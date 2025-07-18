@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuration Management System - Wireframes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .wireframe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .wireframe-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .wireframe-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .wireframe-title {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #4a5568;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .wireframe-content {
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            background: #f8fafc;
+            min-height: 400px;
+        }
+
+        /* Mockup elements */
+        .mockup-header {
+            background: #4a5568;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mockup-nav {
+            background: #e2e8f0;
+            padding: 8px 15px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-item {
+            background: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 0.9em;
+            border: 1px solid #cbd5e0;
+        }
+
+        .nav-item.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .mockup-toolbar {
+            background: #f1f5f9;
+            padding: 10px 15px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .search-bar {
+            background: white;
+            border: 1px solid #cbd5e0;
+            border-radius: 4px;
+            padding: 8px 12px;
+            width: 200px;
+            font-size: 0.9em;
+        }
+
+        .btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #5a67d8;
+        }
+
+        .btn-secondary {
+            background: #718096;
+        }
+
+        .btn-secondary:hover {
+            background: #4a5568;
+        }
+
+        .config-list {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .config-item {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .config-item:last-child {
+            border-bottom: none;
+        }
+
+        .config-item:hover {
+            background: #f8fafc;
+        }
+
+        .config-details {
+            flex: 1;
+        }
+
+        .config-name {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 3px;
+        }
+
+        .config-meta {
+            font-size: 0.8em;
+            color: #718096;
+        }
+
+        .config-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .icon-btn {
+            background: none;
+            border: 1px solid #e2e8f0;
+            padding: 6px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.8em;
+        }
+
+        .icon-btn:hover {
+            background: #f1f5f9;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            font-size: 0.9em;
+            background: white;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .form-col {
+            flex: 1;
+        }
+
+        .checkbox-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .filter-panel {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .filter-title {
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 10px;
+        }
+
+        .tag {
+            background: #edf2f7;
+            color: #4a5568;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            display: inline-block;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        .tag.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .page-btn {
+            background: white;
+            border: 1px solid #e2e8f0;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+
+        .page-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .modal-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #718096;
+        }
+
+        .allocation-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .allocation-column {
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            padding: 15px;
+            background: #f8fafc;
+        }
+
+        .column-title {
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .draggable-item {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            padding: 8px 12px;
+            margin-bottom: 8px;
+            cursor: move;
+            transition: all 0.3s ease;
+        }
+
+        .draggable-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .app-version-item {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .version-info {
+            flex: 1;
+        }
+
+        .version-name {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 3px;
+        }
+
+        .version-meta {
+            font-size: 0.8em;
+            color: #718096;
+        }
+
+        .version-status {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.7em;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-active {
+            background: #c6f6d5;
+            color: #22543d;
+        }
+
+        .status-deprecated {
+            background: #fed7d7;
+            color: #742a2a;
+        }
+
+        .status-beta {
+            background: #feebc8;
+            color: #7b341e;
+        }
+
+        @media (max-width: 768px) {
+            .wireframe-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+            
+            .wireframe-card {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="prd-section" style="background: #fffbe6; border-radius: 10px; padding: 30px; margin-bottom: 40px; box-shadow: 0 4px 16px rgba(0,0,0,0.07);">
+        <h1 style="font-size: 2em; color: #764ba2; margin-bottom: 10px;">Product Requirements Document (PRD)</h1>
+        <h2 style="color: #4a5568; margin-top: 20px;">Introduction</h2>
+        <p>The Configuration Management System for KaneAI & Test Manager is designed to streamline the process of managing, allocating, and maintaining test configurations and application versions. It enables QA engineers and development managers to efficiently assign configurations to test cases and test runs, and to keep application versions up to date, ensuring robust and flexible test automation at scale.</p>
+
+        <h2 style="color: #4a5568; margin-top: 20px;">Goals and Objectives</h2>
+        <ul>
+            <li>Simplify the allocation of configurations to test cases and test runs.</li>
+            <li>Enable easy creation, editing, and management of configuration types and parameters.</li>
+            <li>Maintain and update application versions efficiently within the system.</li>
+            <li>Support advanced filtering, including regular expressions, for precise configuration selection.</li>
+            <li>Ensure seamless integration with KaneAI and Test Manager for automated test execution.</li>
+        </ul>
+
+        <h2 style="color: #4a5568; margin-top: 20px;">Feature Breakdown</h2>
+        <ul>
+            <li><strong>Configuration Types:</strong>
+                <ul>
+                    <li>Desktop: OS, OS Version, Browser, Browser Version, Resolution (Default)</li>
+                    <li>Real Device: OS, Manufacturer, Device Name, OS Version, Application (Optional), Cloud Type (Public/Private)</li>
+                    <li>Virtual Device: OS, Browser, Manufacturer, Device Name, OS Version</li>
+                </ul>
+            </li>
+            <li><strong>Parameters:</strong> Each configuration type supports relevant parameters as above.</li>
+            <li><strong>Regular Expression Filtering:</strong> Users can filter configurations using regex for Manufacturer, Device Name, and OS Version (especially for real devices).</li>
+            <li><strong>Configuration Allocation:</strong> Ability to allocate configurations to test cases and test runs, including bulk actions and drag-and-drop assignment.</li>
+            <li><strong>Application Maintenance:</strong> Manage, update, and edit application versions (mobile and web), including versioning, archiving, and promotion.</li>
+            <li><strong>Filtering System:</strong> Tag-based and advanced filtering for quick selection of configurations for test runs.</li>
+        </ul>
+
+        <h2 style="color: #4a5568; margin-top: 20px;">User Stories</h2>
+        <ul>
+            <li>As a <strong>QA Engineer</strong>, I want to quickly allocate the right configurations to my test cases so that I can ensure coverage across devices and platforms.</li>
+            <li>As a <strong>QA Engineer</strong>, I want to use regular expressions to filter real devices by manufacturer or OS version, so I can target specific device groups.</li>
+            <li>As a <strong>Development Manager</strong>, I want to maintain and update application versions in the system, so that my team always tests against the latest builds.</li>
+            <li>As a <strong>QA Engineer</strong>, I want to bulk-assign configurations to multiple test cases or runs, saving time on repetitive tasks.</li>
+            <li>As a <strong>QA Engineer</strong>, I want to distinguish between public and private cloud real devices, so I can comply with security and access requirements.</li>
+        </ul>
+
+        <h2 style="color: #4a5568; margin-top: 20px;">Challenges</h2>
+        <ul>
+            <li>Handling a large and growing number of configurations efficiently, with fast search and filtering.</li>
+            <li>Ensuring smooth integration with Test Manager for automated test execution and reporting.</li>
+            <li>Maintaining data consistency when configurations or application versions are updated or deprecated.</li>
+            <li>Providing a user-friendly interface for complex filtering (including regex) without overwhelming users.</li>
+            <li>Supporting bulk operations and drag-and-drop allocation in a performant way.</li>
+        </ul>
+
+        <h2 style="color: #4a5568; margin-top: 20px;">Prioritization</h2>
+        <ol>
+            <li><strong>Configuration Allocation System:</strong> Core to the product, enabling assignment of configurations to test cases and runs.</li>
+            <li><strong>Filtering System (including regex):</strong> Essential for managing large configuration sets and targeting specific devices.</li>
+            <li><strong>Application Maintenance:</strong> Important for keeping test environments up to date and relevant.</li>
+            <li><strong>Bulk Actions & Drag-and-Drop:</strong> Improves usability and efficiency for power users.</li>
+        </ol>
+    </div>
+    <div class="container">
+        <div class="header">
+            <h1>Configuration Management System</h1>
+            <p>Wireframes for KaneAI & Test Manager Integration</p>
+        </div>
+
+        <div class="wireframe-grid">
+            <!-- Main Configuration Management Interface -->
+            <div class="wireframe-card">
+                <h2 class="wireframe-title">1. Main Configuration Management Interface</h2>
+                <div class="wireframe-content">
+                    <div class="mockup-header">
+                        <span>Configuration Management</span>
+                        <button class="btn">+ Add Configuration</button>
+                    </div>
+                    
+                    <div class="mockup-nav">
+                        <div class="nav-item active">All Configurations</div>
+                        <div class="nav-item">Desktop</div>
+                        <div class="nav-item">Real Device</div>
+                        <div class="nav-item">Virtual Device</div>
+                    </div>
+                    
+                    <div class="mockup-toolbar">
+                        <input class="search-bar" placeholder="Search configurations...">
+                        <div>
+                            <button class="btn btn-secondary">Filter</button>
+                            <button class="btn">Bulk Actions</button>
+                        </div>
+                    </div>
+                    
+                    <div class="config-list">
+                        <div class="config-item">
+                            <div class="config-details">
+                                <div class="config-name">Windows 11 + Chrome Latest</div>
+                                <div class="config-meta">Desktop • Windows 11 • Chrome 118.0 • 1920x1080</div>
+                            </div>
+                            <div class="config-actions">
+                                <button class="icon-btn">Edit</button>
+                                <button class="icon-btn">Clone</button>
+                                <button class="icon-btn">Delete</button>
+                            </div>
+                        </div>
+                        
+                        <div class="config-item">
+                            <div class="config-details">
+                                <div class="config-name">iPhone 14 Pro iOS 16.5</div>
+                                <div class="config-meta">Real Device • iOS 16.5 • Public Cloud • MyApp v2.1.0</div>
+                            </div>
+                            <div class="config-actions">
+                                <button class="icon-btn">Edit</button>
+                                <button class="icon-btn">Clone</button>
+                                <button class="icon-btn">Delete</button>
+                            </div>
+                        </div>
+                        
+                        <div class="config-item">
+                            <div class="config-details">
+                                <div class="config-name">Galaxy S23 Android 13</div>
+                                <div class="config-meta">Virtual Device • Android 13 • Chrome Mobile • Samsung</div>
+                            </div>
+                            <div class="config-actions">
+                                <button class="icon-btn">Edit</button>
+                                <button class="icon-btn">Clone</button>
+                                <button class="icon-btn">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="pagination">
+                        <button class="page-btn">Previous</button>
+                        <button class="page-btn active">1</button>
+                        <button class="page-btn">2</button>
+                        <button class="page-btn">3</button>
+                        <button class="page-btn">Next</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add/Edit Configuration Modal -->
+            <div class="wireframe-card">
+                <h2 class="wireframe-title">2. Add/Edit Configuration Modal</h2>
+                <div class="wireframe-content">
+                    <div class="modal">
+                        <div class="modal-header">
+                            <div class="modal-title">Add New Configuration</div>
+                            <button class="close-btn">×</button>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Configuration Name</label>
+                            <input class="form-input" placeholder="Enter configuration name...">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Configuration Type</label>
+                            <select class="form-select">
+                                <option>Desktop</option>
+                                <option>Real Device</option>
+                                <option>Virtual Device</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-col">
+                                <label class="form-label">Operating System</label>
+                                <select class="form-select">
+                                    <option>Windows</option>
+                                    <option>macOS</option>
+                                    <option>iOS</option>
+                                    <option>Android</option>
+                                </select>
+                            </div>
+                            <div class="form-col">
+                                <label class="form-label">OS Version</label>
+                                <select class="form-select">
+                                    <option>11</option>
+                                    <option>10</option>
+                                    <option>Latest</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-col">
+                                <label class="form-label">Browser</label>
+                                <select class="form-select">
+                                    <option>Chrome</option>
+                                    <option>Firefox</option>
+                                    <option>Safari</option>
+                                    <option>Edge</option>
+                                </select>
+                            </div>
+                            <div class="form-col">
+                                <label class="form-label">Browser Version</label>
+                                <select class="form-select">
+                                    <option>Latest</option>
+                                    <option>118.0</option>
+                                    <option>117.0</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Resolution</label>
+                            <select class="form-select">
+                                <option>Default</option>
+                                <option>1920x1080</option>
+                                <option>1366x768</option>
+                                <option>1280x720</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="template">
+                                    <label for="template">Save as Template</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="default">
+                                    <label for="default">Set as Default</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
+                            <button class="btn btn-secondary">Cancel</button>
+                            <button class="btn">Save Configuration</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Configuration Filtering System -->
+            <div class="wireframe-card">
+                <h2 class="wireframe-title">3. Configuration Filtering System</h2>
+                <div class="wireframe-content">
+                    <div class="mockup-header">
+                        <span>Filter Configurations</span>
+                        <button class="btn">Clear All</button>
+                    </div>
+                    
+                    <div class="filter-panel">
+                        <div class="filter-title">Configuration Type</div>
+                        <div>
+                            <span class="tag active">Desktop</span>
+                            <span class="tag">Real Device</span>
+                            <span class="tag">Virtual Device</span>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-panel">
+                        <div class="filter-title">Operating System</div>
+                        <div>
+                            <span class="tag active">Windows</span>
+                            <span class="tag active">iOS</span>
+                            <span class="tag">Android</span>
+                            <span class="tag">macOS</span>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-panel">
+                        <div class="filter-title">Device Manufacturer</div>
+                        <div>
+                            <span class="tag">Apple</span>
+                            <span class="tag active">Samsung</span>
+                            <span class="tag">Google</span>
+                            <span class="tag">OnePlus</span>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-panel">
+                        <div class="filter-title">Regular Expression Filter</div>
+                        <div class="form-group">
+                            <input class="form-input" placeholder="Manufacturer regex: ^(Apple|Samsung).*">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-input" placeholder="Device name regex: ^(iPhone|Galaxy).*">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-input" placeholder="OS version regex: ^(iOS|Android)\s*(\d+).*">
+                        </div>
+                    </div>
+                    
+                    <div class="filter-panel">
+                        <div class="filter-title">Cloud Type (Real Devices)</div>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="public" checked>
+                                <label for="public">Public Cloud</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="private">
+                                <label for="private">Private Cloud</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 20px;">
+                        <button class="btn">Apply Filters</button>
+                        <button class="btn btn-secondary">Reset Filters</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Test Case Configuration Allocation -->
+            <div class="wireframe-card">
+                <h2 class="wireframe-title">4. Test Case Configuration Allocation</h2>
+                <div class="wireframe-content">
+                    <div class="mockup-header">
+                        <span>Allocate Configurations to Test Cases</span>
+                        <button class="btn">Save Allocation</button>
+                    </div>
+                    
+                    <div class="allocation-grid">
+                        <div class="allocation-column">
+                            <div class="column-title">Available Configurations</div>
+                            <div class="draggable-item">
+                                <div style="font-weight: 600;">Windows 11 + Chrome</div>
+                                <div style="font-size: 0.8em; color: #718096;">Desktop • Ready</div>
+                            </div>
+                            <div class="draggable-item">
+                                <div style="font-weight: 600;">iPhone 14 Pro iOS 16.5</div>
+                                <div style="font-size: 0.8em; color: #718096;">Real Device • Available</div>
+                            </div>
+                            <div class="draggable-item">
+                                <div style="font-weight: 600;">Galaxy S23 Android 13</div>
+                                <div style="font-size: 0.8em; color: #718096;">Virtual Device • Ready</div>
+                            </div>
+                            <div class="draggable-item">
+                                <div style="font-weight: 600;">macOS Monterey + Safari</div>
+                                <div style="font-size: 0.8em; color: #718096;">Desktop • Ready</div>
+                            </div>
+                        </div>
+                        
+                        <div class="allocation-column">
+                            <div class="column-title">Selected for Test Case: "Login Flow"</div>
+                            <div class="draggable-item">
+                                <div style="font-weight: 600;">Windows 11 + Chrome</div>
+                                <div style="font-size: 0.8em; color: #718096;">Desktop • Assigned</div>
+                            </div>
+                            <div class="draggable-item">
+                                <div style="font-weight: 600;">iPhone 14 Pro iOS 16.5</div>
+                                <div style="font-size: 0.8em; color: #718096;">Real Device • Assigned</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 20px; padding: 15px; background: #f1f5f9; border-radius: 4px;">
+                        <div style="font-weight: 600; margin-bottom: 10px;">Bulk Actions</div>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <select class="form-select" style="width: 200px;">
+                                <option>Select Test Cases...</option>
+                                <option>Login Flow</option>
+                                <option>Purchase Journey</option>
+                                <option>User Registration</option>
+                            </select>
+                            <button class="btn btn-secondary">Apply to Selected</button>
+                            <button class="btn">Create Template</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Application Management Interface -->
+            <div class="wireframe-card">
+                <h2 class="wireframe-title">5. Application Management Interface</h2>
+                <div class="wireframe-content">
+                    <div class="mockup-header">
+                        <span>Application Version Management</span>
+                        <button class="btn">+ Upload New Version</button>
+                    </div>
+                    
+                    <div class="mockup-nav">
+                        <div class="nav-item active">All Applications</div>
+                        <div class="nav-item">iOS Apps</div>
+                        <div class="nav-item">Android Apps</div>
+                        <div class="nav-item">Web Apps</div>
+                    </div>
+                    
+                    <div class="mockup-toolbar">
+                        <input class="search-bar" placeholder="Search applications...">
+                        <div>
+                            <button class="btn btn-secondary">Archive Old Versions</button>
+                            <button class="btn">Bulk Update</button>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <div style="font-weight: 600; margin-bottom: 10px;">MyApp - Mobile Application</div>
+                        
+                        <div class="app-version-item">
+                            <div class="version-info">
+                                <div class="version-name">MyApp v2.1.0</div>
+                                <div class="version-meta">Uploaded: 2024-01-15 • Size: 45.2 MB • Build: 2024011501</div>
+                            </div>
+                            <div class="version-status status-active">Active</div>
+                            <div class="config-actions">
+                                <button class="icon-btn">Edit</button>
+                                <button class="icon-btn">Download</button>
+                                <button class="icon-btn">Archive</button>
+                            </div>
+                        </div>
+                        
+                        <div class="app-version-item">
+                            <div class="version-info">
+                                <div class="version-name">MyApp v2.0.5</div>
+                                <div class="version-meta">Uploaded: 2024-01-10 • Size: 44.8 MB • Build: 2024011001</div>
+                            </div>
+                            <div class="version-status status-deprecated">Deprecated</div>
+                            <div class="config-actions">
+                                <button class="icon-btn">Edit</button>
+                                <button class="icon-btn">Download</button>
+                                <button class="icon-btn">Archive</button>
+                            </div>
+                        </div>
+                        
+                        <div class="app-version-item">
+                            <div class="version-info">
+                                <div class="version-name">MyApp v2.2.0-beta</div>
+                                <div class="version-meta">Uploaded: 2024-01-18 • Size: 46.1 MB • Build: 2024011801</div>
+                            </div>
+                            <div class="version-status status-beta">Beta</div>
+                            <div class="config-actions">
+                                <button class="icon-btn">Edit</button>
+                                <button class="icon-btn">Download</button>
+                                <button class="icon-btn">Promote</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="border-top: 1px solid #e2e8f0; padding-top: 15px;">
+                        <div style="font-weight: 600; margin-bottom: 10px;">WebApp - Browser Application</div>
+                        
+                        <div class="app-version-item">
+                            <div class="version-info">
+                                <div class="version-name">WebApp v1.5.2</div>
+                                <div class="version-meta">Deployed: 2024-01-16 • URL: https://app.example.com</div>
+                            </div>
+                            <div class="version-status status-active">Live</div>
+                            <div class="config-actions">
+                                <button class="icon-btn">Edit</button>
+                                <button class="icon-btn">Test</button>
+                                <button class="icon-btn">Rollback</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Test Run Configuration Selection -->
+            <div class="wireframe-card">
+                <h2 class="wireframe-title">6. Test Run Configuration Selection</h2>
+                <div class="wireframe-content">
+                    <div class="mockup-header">
+                        <span>Create New Test Run</span>
+                        <button class="btn">Start Test Run</button>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Test Run Name</label>
+                        <input class="form-input" placeholder="Enter test run name...">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Test Suite</label>
+                        <select class="form-select">
+                            <option>Smoke Test Suite</option>
+                            <option>Regression Test Suite</option>
+                            <option>E2E Test Suite</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Selected Configurations</label>
+                        <div style="border: 1px solid #e2e8f0; border-radius: 4px; padding: 15px; background: #f8fafc;">
+                            <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
+                                <span class="tag active">Windows 11 + Chrome ×</span>
+                                <span class="tag active">iPhone 14 Pro iOS 16.5 ×</span>
+                                <span class="tag active">Galaxy S23 Android 13 ×</span>
+                            </div>
+                            <button class="btn btn-secondary">+ Add Configuration</button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Execution Settings</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="parallel" checked>
+                                <label for="parallel">Run in Parallel</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="screenshots">
+                                <label for="screenshots">Capture Screenshots</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="videos">
+                                <label for="videos">Record Videos</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #f1f5f9; padding: 15px; border-radius: 4px; margin-top: 20px;">
+                        <div style="font-weight: 600; margin-bottom: 10px;">Resource Availability Check</div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                            <span>Windows 11 + Chrome</span>
+                            <span style="color: #22543d; font-weight: 600;">✓ Available</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                            <span>iPhone 14 Pro iOS 16.5</span>
+                            <span style="color: #d69e2e; font-weight: 600;">⚠ Queue: 2 mins</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span>Galaxy S23 Android 13</span>
+                            <span style="color: #22543d; font-weight: 600;">✓ Available</span>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 20px;">
+                        <div style="font-weight: 600; margin-bottom: 10px;">Estimated Execution Time</div>
+                        <div style="font-size: 1.2em; color: #2d3748;">
+                            <strong>12 minutes</strong> (with parallel execution)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
